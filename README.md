@@ -93,6 +93,7 @@ src/
 ## 🎨 Design System
 
 The app uses a cinematic design system with:
+
 - **Colors**: Dark backgrounds with gold and platinum accents
 - **Typography**: Hierarchical text styling with custom font weights
 - **Spacing**: Consistent spacing using CSS variables

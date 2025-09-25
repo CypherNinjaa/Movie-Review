@@ -13,6 +13,7 @@ import {
 import { Input } from "../../components/ui/Input";
 import { Label } from "../../components/ui/Label";
 import { useAuth } from "../../hooks/useAuth";
+import { supabase } from "../../lib/supabaseClient";
 
 export const ResetPasswordPage = () => {
 	const navigate = useNavigate();
@@ -22,13 +23,65 @@ export const ResetPasswordPage = () => {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [formError, setFormError] = useState<string | null>(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [isProcessingToken, setIsProcessingToken] = useState(true);
 
-	// Check if user is authenticated via password reset session
+	// Parse hash fragments and establish session
 	useEffect(() => {
-		// Wait for auth to load
-		if (loading) return;
+		const handleAuthFromHash = async () => {
+			const hashParams = new URLSearchParams(window.location.hash.substring(1));
+			const accessToken = hashParams.get("access_token");
+			const refreshToken = hashParams.get("refresh_token");
+			const type = hashParams.get("type");
 
-		// If no user session, the reset link was invalid or expired
+			if (accessToken && refreshToken && type === "recovery") {
+				try {
+					// Set the session using the tokens from the URL
+					const { error } = await supabase.auth.setSession({
+						access_token: accessToken,
+						refresh_token: refreshToken,
+					});
+
+					if (error) {
+						console.error("Error setting session:", error);
+						setFormError("Invalid or expired reset link.");
+						navigate("/forgot-password", {
+							replace: true,
+							state: {
+								message:
+									"Invalid or expired reset link. Please request a new one.",
+							},
+						});
+						return;
+					}
+
+					// Clear the hash from the URL for cleaner appearance
+					window.history.replaceState(null, "", window.location.pathname);
+				} catch (error) {
+					console.error("Error processing reset token:", error);
+					setFormError("Failed to process reset link.");
+					navigate("/forgot-password", {
+						replace: true,
+						state: {
+							message:
+								"Failed to process reset link. Please request a new one.",
+						},
+					});
+					return;
+				}
+			}
+
+			setIsProcessingToken(false);
+		};
+
+		handleAuthFromHash();
+	}, [navigate]);
+
+	// Check if user is authenticated after processing token
+	useEffect(() => {
+		// Wait for both auth to load and token processing to complete
+		if (loading || isProcessingToken) return;
+
+		// If no user session after processing, redirect
 		if (!user) {
 			navigate("/forgot-password", {
 				replace: true,
@@ -37,7 +90,7 @@ export const ResetPasswordPage = () => {
 				},
 			});
 		}
-	}, [user, loading, navigate]);
+	}, [user, loading, isProcessingToken, navigate]);
 
 	const validatePasswords = (): boolean => {
 		if (!password) {
@@ -91,8 +144,8 @@ export const ResetPasswordPage = () => {
 		}
 	};
 
-	// Show loading while auth is loading
-	if (loading) {
+	// Show loading while auth is loading or processing token
+	if (loading || isProcessingToken) {
 		return (
 			<div
 				className="surface-panel"
@@ -107,7 +160,7 @@ export const ResetPasswordPage = () => {
 		);
 	}
 
-	// If no user, we'll redirect (handled in useEffect), but show nothing for now
+	// If no user after processing, we'll redirect (handled in useEffect), but show nothing for now
 	if (!user) {
 		return null;
 	}
