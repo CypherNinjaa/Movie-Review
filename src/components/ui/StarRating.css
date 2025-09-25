@@ -1,0 +1,92 @@
+/* Star Rating Component Styles */
+
+.star-rating {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.star-rating__stars {
+	display: flex;
+	gap: 0.25rem;
+}
+
+.star-rating__star {
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	color: #e5e7eb; /* Default gray */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.star-rating__star:hover,
+.star-rating__star:focus {
+	outline: none;
+	transform: scale(1.1);
+}
+
+.star-rating__star--filled {
+	color: #fbbf24; /* Amber/gold color */
+}
+
+.star-rating__star--clickable:hover {
+	color: #f59e0b; /* Darker amber on hover */
+}
+
+.star-rating__star:disabled {
+	cursor: default;
+}
+
+.star-rating__star:disabled:hover {
+	transform: none;
+}
+
+/* Size variations */
+.star-rating--small .star-rating__star svg {
+	width: 16px;
+	height: 16px;
+}
+
+.star-rating--medium .star-rating__star svg {
+	width: 20px;
+	height: 20px;
+}
+
+.star-rating--large .star-rating__star svg {
+	width: 28px;
+	height: 28px;
+}
+
+.star-rating__label {
+	font-size: 0.875rem;
+	color: var(--color-text-muted, #6b7280);
+	font-weight: 500;
+	text-align: center;
+	min-height: 1.25rem; /* Prevent layout shift */
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+	.star-rating__star {
+		color: #4b5563; /* Darker gray for dark mode */
+	}
+
+	.star-rating__star--filled {
+		color: #fbbf24;
+	}
+
+	.star-rating__star--clickable:hover {
+		color: #f59e0b;
+	}
+}
+
+/* Focus styles for accessibility */
+.star-rating__star:focus-visible {
+	outline: 2px solid var(--color-primary, #3b82f6);
+	outline-offset: 2px;
+	border-radius: 4px;
+}

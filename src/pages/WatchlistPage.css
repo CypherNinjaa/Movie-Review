@@ -1,0 +1,330 @@
+/* 🎬 WATCHLIST PAGE STYLES */
+
+.watchlist-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: var(--space-lg);
+	flex-wrap: wrap;
+	gap: var(--space-md);
+}
+
+.watchlist-stats {
+	display: flex;
+	gap: var(--space-md);
+	flex-wrap: wrap;
+}
+
+.stat-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: var(--space-sm) var(--space-md);
+	background: var(--color-surface-glass);
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius-lg);
+	backdrop-filter: blur(10px);
+}
+
+.stat-number {
+	font-size: var(--text-2xl);
+	font-weight: var(--font-bold);
+	color: var(--color-primary);
+	line-height: 1;
+}
+
+.stat-label {
+	font-size: var(--text-xs);
+	color: var(--color-text-dim);
+	font-weight: var(--font-medium);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.watchlist-filters {
+	display: flex;
+	gap: var(--space-sm);
+	margin-bottom: var(--space-xl);
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.watchlist-search {
+	flex: 1;
+	min-width: 200px;
+}
+
+.watchlist-filters .select {
+	min-width: 150px;
+}
+
+.loading-state,
+.error-state,
+.empty-state {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: var(--space-4xl);
+	text-align: center;
+}
+
+.loading-state p,
+.error-state p {
+	margin-top: var(--space-md);
+	color: var(--color-text-muted);
+}
+
+.empty-state {
+	background: var(--color-surface-glass);
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius-xl);
+	backdrop-filter: blur(10px);
+}
+
+.empty-icon {
+	font-size: 4rem;
+	margin-bottom: var(--space-lg);
+	opacity: 0.6;
+}
+
+.empty-state h3 {
+	margin: 0 0 var(--space-sm) 0;
+	color: var(--color-text);
+	font-size: var(--text-xl);
+}
+
+.empty-state p {
+	margin: 0;
+	color: var(--color-text-muted);
+}
+
+.watchlist-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: var(--space-lg);
+	margin-bottom: var(--space-xl);
+}
+
+.watchlist-item {
+	display: flex;
+	flex-direction: column;
+	background: var(--color-surface-glass);
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius-xl);
+	overflow: hidden;
+	backdrop-filter: blur(20px);
+	transition: var(--transition-smooth);
+}
+
+.watchlist-item:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--shadow-cinematic);
+	border-color: var(--color-primary);
+}
+
+.watchlist-item-actions {
+	padding: var(--space-md);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-sm);
+}
+
+.watchlist-item-meta {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: var(--space-sm);
+}
+
+.priority-badge {
+	padding: var(--space-xs) var(--space-sm);
+	border-radius: var(--radius-full);
+	font-size: var(--text-xs);
+	font-weight: var(--font-semibold);
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.watched-status {
+	display: flex;
+	align-items: center;
+	gap: var(--space-xs);
+	font-size: var(--text-sm);
+}
+
+.watched-status input[type="checkbox"] {
+	width: 1.25rem;
+	height: 1.25rem;
+	border-radius: var(--radius-sm);
+	border: 2px solid var(--border-color);
+	background: transparent;
+	cursor: pointer;
+	transition: var(--transition-smooth);
+}
+
+.watched-status input[type="checkbox"]:checked {
+	background: var(--color-primary);
+	border-color: var(--color-primary);
+}
+
+.watched-status label {
+	color: var(--color-text-muted);
+	cursor: pointer;
+	font-weight: var(--font-medium);
+}
+
+.item-notes {
+	margin: 0;
+	padding: var(--space-sm);
+	background: var(--color-surface);
+	border-radius: var(--radius-md);
+	font-size: var(--text-sm);
+	color: var(--color-text-muted);
+	font-style: italic;
+	line-height: 1.4;
+}
+
+.action-buttons {
+	display: flex;
+	gap: var(--space-sm);
+	justify-content: flex-end;
+}
+
+/* EDIT MODAL */
+.edit-modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.7);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+	backdrop-filter: blur(8px);
+}
+
+.edit-modal {
+	background: var(--color-surface);
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius-xl);
+	padding: var(--space-xl);
+	width: 90%;
+	max-width: 500px;
+	max-height: 90vh;
+	overflow-y: auto;
+	box-shadow: var(--shadow-cinematic);
+}
+
+.edit-modal h3 {
+	margin: 0 0 var(--space-md) 0;
+	color: var(--color-text);
+	font-size: var(--text-xl);
+}
+
+.edit-movie-title {
+	margin: 0 0 var(--space-lg) 0;
+	color: var(--color-text-muted);
+	font-size: var(--text-lg);
+	font-weight: var(--font-semibold);
+}
+
+.edit-form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-lg);
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-xs);
+}
+
+.form-group label {
+	font-size: var(--text-sm);
+	font-weight: var(--font-semibold);
+	color: var(--color-text);
+}
+
+.form-group textarea {
+	padding: var(--space-md);
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius-md);
+	background: var(--color-surface-elevated);
+	color: var(--color-text);
+	font-family: inherit;
+	font-size: var(--text-sm);
+	line-height: 1.5;
+	resize: vertical;
+	transition: var(--transition-smooth);
+}
+
+.form-group textarea:focus {
+	outline: none;
+	border-color: var(--color-primary);
+	box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+}
+
+.edit-actions {
+	display: flex;
+	gap: var(--space-sm);
+	justify-content: flex-end;
+	margin-top: var(--space-md);
+}
+
+/* 📱 MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+	.watchlist-header {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.watchlist-stats {
+		justify-content: center;
+	}
+
+	.watchlist-filters {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.watchlist-filters .select {
+		min-width: auto;
+	}
+
+	.watchlist-grid {
+		grid-template-columns: 1fr;
+		gap: var(--space-md);
+	}
+
+	.watchlist-item-meta {
+		flex-direction: column;
+		align-items: stretch;
+		gap: var(--space-md);
+	}
+
+	.action-buttons {
+		justify-content: stretch;
+	}
+
+	.action-buttons button {
+		flex: 1;
+	}
+
+	.edit-modal {
+		width: 95%;
+		padding: var(--space-lg);
+	}
+
+	.edit-actions {
+		flex-direction: column;
+	}
+
+	.edit-actions button {
+		width: 100%;
+	}
+}

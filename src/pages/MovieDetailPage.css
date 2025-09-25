@@ -1,0 +1,458 @@
+/* 🎬 CINEMATIC MOVIE DETAIL PAGE */
+
+.movie-detail {
+	animation: fadeIn var(--duration-slow) var(--easing-entrance);
+	padding: 0 var(--space-md);
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+/* 📱 Responsive container */
+@media (min-width: 768px) {
+	.movie-detail {
+		padding: 0 var(--space-lg);
+	}
+}
+
+@media (min-width: 1024px) {
+	.movie-detail {
+		padding: 0 var(--space-xl);
+	}
+}
+
+@media (max-width: 480px) {
+	.movie-detail {
+		padding: 0 var(--space-xs);
+	}
+}
+
+/* 🎭 HERO SECTION - Full immersion */
+.movie-hero {
+	position: relative;
+	min-height: 70vh;
+	border-radius: var(--radius-2xl);
+	overflow: hidden;
+	margin-bottom: var(--space-3xl);
+}
+
+.movie-hero__backdrop {
+	position: absolute;
+	inset: 0;
+	background-image: inherit;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.movie-hero__gradient {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		135deg,
+		rgba(0, 0, 0, 0.8) 0%,
+		rgba(0, 0, 0, 0.6) 50%,
+		rgba(0, 0, 0, 0.9) 100%
+	);
+}
+
+.movie-hero__content {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	align-items: flex-end;
+	min-height: 70vh;
+	padding: var(--space-2xl);
+	gap: var(--space-2xl);
+}
+
+/* 📱 Mobile-first hero layout */
+@media (max-width: 767px) {
+	.movie-hero {
+		min-height: auto;
+		margin-bottom: var(--space-2xl);
+		border-radius: var(--radius-lg);
+	}
+
+	.movie-hero__content {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		min-height: auto;
+		padding: var(--space-lg);
+		gap: var(--space-lg);
+	}
+
+	.movie-hero__info {
+		width: 100%;
+		max-width: none;
+	}
+
+	.movie-hero__nav {
+		margin-bottom: var(--space-md);
+		text-align: left;
+		width: 100%;
+	}
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+	.movie-hero__content {
+		padding: var(--space-md);
+		gap: var(--space-md);
+	}
+
+	.movie-hero__poster {
+		width: 140px;
+		height: 210px;
+	}
+
+	.movie-hero__rating-item {
+		padding: var(--space-xs) var(--space-sm);
+		font-size: var(--text-xs);
+	}
+}
+
+/* 🎪 MOVIE POSTER */
+.movie-hero__poster {
+	flex-shrink: 0;
+	width: 200px;
+	height: 300px;
+	border-radius: var(--radius-lg);
+	overflow: hidden;
+	box-shadow: var(--shadow-cinematic);
+	transition: var(--transition-smooth);
+}
+
+.movie-hero__poster:hover {
+	transform: scale(1.05) rotateY(5deg);
+	box-shadow: var(--shadow-cinematic), var(--shadow-glow);
+}
+
+.movie-hero__poster-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+@media (max-width: 767px) {
+	.movie-hero__poster {
+		width: 160px;
+		height: 240px;
+	}
+}
+
+/* 🎬 MOVIE INFO */
+.movie-hero__info {
+	flex: 1;
+	color: var(--color-text);
+}
+
+.movie-hero__nav {
+	margin-bottom: var(--space-lg);
+}
+
+.movie-hero__back-btn {
+	background: rgba(0, 0, 0, 0.6);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(10px);
+	color: var(--color-text);
+	transition: var(--transition-smooth);
+}
+
+.movie-hero__back-btn:hover {
+	background: rgba(0, 0, 0, 0.8);
+	border-color: var(--color-primary);
+	transform: translateX(-4px);
+}
+
+.movie-hero__title {
+	font-size: var(--text-4xl);
+	font-weight: var(--font-extrabold);
+	margin: 0 0 var(--space-sm);
+	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+	line-height: 1.1;
+	letter-spacing: -0.025em;
+}
+
+.movie-hero__year {
+	font-size: var(--text-xl);
+	margin: 0 0 var(--space-lg);
+	opacity: 0.9;
+	text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.movie-hero__ratings {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-md);
+}
+
+.movie-hero__rating-group {
+	display: flex;
+	align-items: center;
+	gap: var(--space-md);
+	flex-wrap: wrap;
+}
+
+.movie-hero__rating-item {
+	display: flex;
+	align-items: center;
+	gap: var(--space-sm);
+	background: rgba(0, 0, 0, 0.6);
+	padding: var(--space-sm) var(--space-md);
+	border-radius: var(--radius-lg);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.movie-hero__rating-label {
+	font-weight: var(--font-semibold);
+	opacity: 0.9;
+	font-size: var(--text-sm);
+}
+
+.movie-hero__rating-value {
+	font-weight: var(--font-bold);
+	font-size: var(--text-lg);
+}
+
+.movie-hero__rating-count {
+	opacity: 0.8;
+	font-size: var(--text-sm);
+}
+
+@media (max-width: 767px) {
+	.movie-hero__title {
+		font-size: var(--text-2xl);
+		line-height: 1.2;
+		margin-bottom: var(--space-xs);
+	}
+
+	.movie-hero__year {
+		font-size: var(--text-lg);
+		margin-bottom: var(--space-md);
+	}
+
+	.movie-hero__rating-group {
+		justify-content: center;
+		flex-direction: column;
+		gap: var(--space-sm);
+	}
+
+	.movie-hero__rating-item {
+		width: 100%;
+		justify-content: center;
+		min-height: 2.5rem;
+	}
+
+	.movie-hero__rating-label,
+	.movie-hero__rating-value,
+	.movie-hero__rating-count {
+		font-size: var(--text-sm);
+	}
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+	.movie-hero__content {
+		padding: var(--space-xl);
+		gap: var(--space-xl);
+	}
+
+	.movie-hero__poster {
+		width: 180px;
+		height: 270px;
+	}
+
+	.movie-hero__title {
+		font-size: var(--text-3xl);
+	}
+}
+
+@media (min-width: 768px) {
+	.movie-hero__title {
+		font-size: var(--text-5xl);
+	}
+}
+
+@media (min-width: 1024px) {
+	.movie-hero__title {
+		font-size: var(--text-6xl);
+	}
+}
+
+/* 📝 MOVIE OVERVIEW SECTION */
+.movie-overview {
+	margin-bottom: var(--space-3xl);
+	animation: slideInUp var(--duration-medium) var(--easing-entrance);
+	animation-delay: 0.2s;
+	animation-fill-mode: both;
+}
+
+.movie-overview__title {
+	display: flex;
+	align-items: center;
+	gap: var(--space-sm);
+	background: var(--gradient-primary);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.movie-overview__icon {
+	width: 1.5rem;
+	height: 1.5rem;
+	color: var(--color-primary);
+	filter: drop-shadow(0 0 8px var(--color-primary));
+	animation: glow 3s ease-in-out infinite;
+}
+
+.movie-overview__text {
+	line-height: 1.8;
+	font-size: var(--text-lg);
+	color: var(--color-text-muted);
+	margin: 0;
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 📱 Responsive overview section */
+@media (max-width: 767px) {
+	.movie-overview {
+		margin-bottom: var(--space-2xl);
+	}
+
+	.movie-overview__text {
+		font-size: var(--text-base);
+		line-height: 1.6;
+	}
+
+	.movie-overview__title {
+		font-size: var(--text-lg);
+	}
+
+	.movie-overview__icon {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.movie-overview {
+		margin-bottom: var(--space-xl);
+	}
+
+	.movie-overview__text {
+		font-size: var(--text-sm);
+	}
+}
+
+/* 🎭 LOADING STATES */
+.movie-detail__loading {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 50vh;
+	gap: var(--space-lg);
+	padding: var(--space-xl);
+}
+
+.movie-detail__loading-spinner {
+	width: 3rem;
+	height: 3rem;
+	color: var(--color-primary);
+	animation: glow 2s ease-in-out infinite;
+}
+
+.movie-detail__loading-text {
+	font-size: var(--text-lg);
+	color: var(--color-text-muted);
+	margin: 0;
+	text-align: center;
+}
+
+/* ⚠️ ERROR STATES */
+.movie-detail__error {
+	text-align: center;
+	padding: var(--space-4xl);
+	min-height: 40vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.movie-detail__error-text {
+	color: var(--color-danger);
+	margin-bottom: var(--space-lg);
+	font-size: var(--text-lg);
+}
+
+/* 📱 Responsive loading and error states */
+@media (max-width: 767px) {
+	.movie-detail__loading {
+		padding: var(--space-lg);
+		min-height: 40vh;
+	}
+
+	.movie-detail__loading-spinner {
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+
+	.movie-detail__loading-text {
+		font-size: var(--text-base);
+	}
+
+	.movie-detail__error {
+		padding: var(--space-2xl);
+		min-height: 30vh;
+	}
+
+	.movie-detail__error-text {
+		font-size: var(--text-base);
+	}
+}
+
+@media (max-width: 480px) {
+	.movie-detail__loading {
+		padding: var(--space-md);
+	}
+
+	.movie-detail__error {
+		padding: var(--space-lg);
+	}
+}
+
+/* 🎪 REVIEWS SECTION */
+.movie-reviews-section {
+	animation: slideInRight var(--duration-slow) var(--easing-entrance);
+	animation-delay: 0.3s;
+	animation-fill-mode: both;
+}
+
+/* ✨ INTERACTIVE ENHANCEMENTS */
+.movie-detail *:not(.movie-hero__backdrop) {
+	transform-style: preserve-3d;
+}
+
+.movie-detail:hover .movie-hero__poster {
+	transform: scale(1.02) rotateY(2deg);
+}
+
+/* 🎬 CINEMATIC SCROLLING EFFECTS */
+@media (min-width: 768px) {
+	.movie-hero__backdrop {
+		animation: subtleZoom 20s ease-in-out infinite;
+	}
+}
+
+@keyframes subtleZoom {
+	0%,
+	100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.05);
+	}
+}
